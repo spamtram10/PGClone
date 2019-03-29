@@ -61,7 +61,7 @@ while read p; do
 
       if [[ ${tcryptcheck} != "" || ${gcryptcheck} != "" || ${tdrivecheck} != "" || ${gdrivecheck} != "" ]]; then
         rm -rf "{{hdpath}}/move/$p"
-        echo "deleted {{hdpath}}/move/$p" > /tmp/blitz.log
+        echo "Deleted Duplicate - {{hdpath}}/move/$p" >> /var/plexguide/logs/pgblitz.log
       fi
 
     done </var/plexguide/pgblitz.temp
