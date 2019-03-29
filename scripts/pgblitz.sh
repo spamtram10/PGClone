@@ -19,6 +19,10 @@ chmod -R 775 "{{hdpath}}/downloads"
 chown -R 1000:1000 "{{hdpath}}/move"
 chmod -R 775 "{{hdpath}}/move"
 
+countvar="{{hdpath}}"
+countnum=$(echo -n "${countvar}" | wc -c)
+finalnum=$(($countnum + 8))
+
 startscript () {
 while read p; do
 
@@ -44,6 +48,23 @@ while read p; do
 
   chown -R 1000:1000 "{{hdpath}}/move"
   chmod -R 775 "{{hdpath}}/move"
+
+  find /{{hdpath}}/move -type f | cut -c ${finalnum}- > /var/plexguide/pgblitz.temp
+
+    while read p; do
+      delete_item="off"
+
+      gdrivecheck=$(ls -la /mnt/gdrive | grep "\<$p\>")
+      tdrivecheck=$(ls -la /mnt/tdrive | grep "\<$p\>")
+      gcryptcheck=$(ls -la /mnt/crypt | grep "\<$p\>")
+      tcryptcheck=$(ls -la /mnt/tcryptdf | grep "\<$p\>")
+
+      if [[ ${tcryptcheck} != "" || ${gcryptcheck} != "" || ${tdrivecheck} != "" || ${gdrivecheck} != "" ]]; then
+        rm -rf "{{hdpath}}/move/$p"
+        echo "deleted {{hdpath}}/move/$p" > /tmp/blitz.log
+      fi
+
+    done </var/plexguide/pgblitz.temp
 
   rclone moveto "{{hdpath}}/move" "${p}{{encryptbit}}:/" \
   --config /opt/appdata/plexguide/rclone.conf \
