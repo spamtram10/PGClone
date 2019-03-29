@@ -58,11 +58,6 @@ while read p; do
   --exclude="**_HIDDEN~" --exclude=".unionfs/**" \
   --exclude='**partial~' --exclude=".unionfs-fuse/**" \
   --exclude=".fuse_hidden**" \
-  --exclude="**sabnzbd**" --exclude="**nzbget**" \
-  --exclude="**qbittorrent**" --exclude="**rutorrent**" \
-  --exclude="**deluge**" --exclude="**transmission**" \
-  --exclude="**jdownloader**" --exclude="**makemkv**" \
-  --exclude="**handbrake**" --exclude="**bazarr**" \
   --exclude="**ignore**"  --exclude="**inProgress**"
 
   echo "Cycle $cyclecount - Sleeping for 30 Seconds" >> /var/plexguide/logs/pgblitz.log
