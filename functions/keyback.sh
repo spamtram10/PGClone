@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Title:      PlexGuide (Reference Title File)
+# Title:      PGBlitz (Reference Title File)
 # Author(s):  Admin9705
-# URL:        https://plexguide.com - http://github.plexguide.com
+# URL:        https://pgblitz.com - http://github.pgblitz.com
 # GNU:        General Public License v3.0
 ################################################################################
 
@@ -22,7 +22,7 @@ NOTE: Standby, takes a minute!
 EOF
 rclone purge --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/keys/$serverid
 rclone copy --config /opt/appdata/plexguide/rclone.conf /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/keys/$serverid/conf -v --checksum --drive-chunk-size=64M
-rclone copy --config /opt/appdata/plexguide/rclone.conf /opt/appdata/pgblitz/keys/processed/ gdrive:/plexguide/backup/keys/$serverid/keys -v --checksum --drive-chunk-size=64M
+rclone copy --config /opt/appdata/plexguide/rclone.conf /opt/appdata/plexguide/keys/processed/ gdrive:/plexguide/backup/keys/$serverid/keys -v --checksum --drive-chunk-size=64M
 
 tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -83,7 +83,7 @@ EOF
 keyrestore; fi
 
 serverid="$typed"
-mkdir -p /opt/appdata/pgblitz/processed
+mkdir -p /opt/appdata/plexguide/processed
 
 tee <<-EOF
 
@@ -93,7 +93,7 @@ tee <<-EOF
 
 EOF
 rclone copy --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/keys/$serverid/conf /opt/appdata/plexguide/  -v --checksum --drive-chunk-size=64M
-rclone copy --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/keys/$serverid/keys /opt/appdata/pgblitz/keys/processed/  -v --checksum --drive-chunk-size=64M
+rclone copy --config /opt/appdata/plexguide/rclone.conf gdrive:/plexguide/backup/keys/$serverid/keys /opt/appdata/plexguide/keys/processed/  -v --checksum --drive-chunk-size=64M
 
 tee <<-EOF
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
